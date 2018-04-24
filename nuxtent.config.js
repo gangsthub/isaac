@@ -8,7 +8,7 @@ module.exports = {
     isPost: false
   },
   api: {
-    baseURL: 'http://localhost:3000',
-    browserBaseURL: 'http://localhost:3000'
+    baseURL: 'http://localhost:80',
+    browserBaseURL: 'http://localhost:80'
   }
 }
