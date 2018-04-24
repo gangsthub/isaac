@@ -1,0 +1,15 @@
+# dependencies
+node_modules
+
+# logs
+npm-debug.log
+
+# Nuxt build
+.nuxt
+
+# Netlify build
+*.toml
+.toml
+
+# Nuxt generate
+dist
