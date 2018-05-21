@@ -1,6 +1,9 @@
 <template>
   <article>
     <h1>{{ title }}</h1>
+    <p>{{ date }}</p>
+    <img :src="thumbnail">
+    <p>{{ body }}</p>
   </article>
 </template>
 
