@@ -14,9 +14,11 @@
     "precommit": "npm run lint"
   },
   "dependencies": {
-    "nuxt": "^1.0.0"
+    "nuxt": "^1.0.0",
+    "three": "^0.94.0"
   },
   "devDependencies": {
+    "@types/three": "^0.92.8",
     "babel-eslint": "^8.2.1",
     "eslint": "^4.15.0",
     "eslint-friendly-formatter": "^3.0.0",
