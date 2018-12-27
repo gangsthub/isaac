@@ -1,6 +1,6 @@
 <template>
   <section class="container">
-    <h1>Blog</h1>
+    <h1>Collections</h1>
     <ul>
       <li v-for="post in posts" :key="post.date">
         <nuxt-link :to="post._path">
@@ -18,12 +18,13 @@ export default {
   },
   data() {
     // Using webpacks context to gather all files from a folder
-    const context = require.context('~/content/blog/posts/', false, /\.json$/);
-
-    const posts = context.keys().map(key => ({
-      ...context(key),
-      _path: `/blog/${key.replace('.json', '').replace('./', '')}`
-    }));
+    const context = require.context('~/content/', true, /\.json$/);
+    const posts = context.keys()
+      .map(k => console.log(k) || k)
+      .map(key => ({
+        ...context(key),
+        _path: `/${key.replace('.json', '').replace('./', '')}`
+      }));
 
     return { posts };
   }
