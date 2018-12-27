@@ -1,4 +1,4 @@
-# isaac2
+# isaac
 
 > Nuxt.js + Netlify CMS project
 
