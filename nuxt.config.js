@@ -12,7 +12,7 @@ const APP_COVER_IMG = '/cover.png';
 const THEME_COLOR = tailwindConfig.colors['indigo-darker']
 
 const dynamicRoutes  = getDynamicPaths({
-  '/blog': 'blog/posts/*.json'
+  '/canvas': 'canvas/*.json',
 });
 
 const isProd = process.env.NODE_ENV === 'production';

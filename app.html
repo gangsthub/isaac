@@ -10,17 +10,9 @@
   {{ APP }}
 </body>
 <script>
-  if (window && window.netlifyIdentity) {
-    window.netlifyIdentity.on("init", user => {
-      if (!user) {
-        window.netlifyIdentity.on("login", () => {
-          document.location.href = "/admin/";
-        });
-      }
-    });
-  } else {
-    console.log('script not found: netlifyIdentity');
-  }
+  if(window&&window.netlifyIdentity){window.netlifyIdentity.on("init",user=>{
+    if(!user){window.netlifyIdentity.on("login",()=>{document.location.href="/admin/"})}
+  })}
 </script>
 
 </html>
