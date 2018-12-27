@@ -36,7 +36,7 @@ export default {
     }
   },
   async asyncData({ params }) {
-    const post = await import('~/content/blog/posts/' + params.slug + '.json');
+    const post = await import('~/content/' + params.collection + '/' + params.slug + '.json');
     return { post };
   },
   computed: {
