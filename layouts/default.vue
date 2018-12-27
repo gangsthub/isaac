@@ -1,7 +1,11 @@
 <template>
   <div>
-    <my-header></my-header>
-    <nuxt/>
+    <header>
+      <my-header></my-header>
+    </header>
+    <main class="container">
+      <nuxt/>
+    </main>
   </div>
 </template>
 
