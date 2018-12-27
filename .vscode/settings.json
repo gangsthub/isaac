@@ -1,0 +1,7 @@
+{
+  "cSpell.enabled": false,
+  "vetur.validation.style": false,
+  "files.associations": {
+    "*.css": "postcss"
+  }
+}

@@ -1,0 +1,17 @@
+@custom-selector :--headings h1, h2, h3, h4, h5, h6;
+
+body {
+  font-feature-settings: "kern", "liga", "clig", "calt";
+  font-kerning: normal;
+  @apply font-sans;
+}
+
+p {
+  @apply leading-normal;
+}
+
+:--headings {
+  @apply leading-tight text-grey-darkest mb-2;
+  font-family: Merriweather, Georgia, serif;
+  text-rendering: optimizeLegibility;
+}

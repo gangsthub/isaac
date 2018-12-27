@@ -199,17 +199,13 @@ module.exports = {
 
   fonts: {
     'sans': [
-      'system-ui',
-      'BlinkMacSystemFont',
+      'Source Sans Pro',
       '-apple-system',
+      'BlinkMacSystemFont',
       'Segoe UI',
       'Roboto',
-      'Oxygen',
-      'Ubuntu',
-      'Cantarell',
-      'Fira Sans',
-      'Droid Sans',
       'Helvetica Neue',
+      'Arial',
       'sans-serif'
     ],
     'serif': [
@@ -856,7 +852,7 @@ module.exports = {
     display: ['responsive'],
     flexbox: ['responsive'],
     float: false,
-    fonts: ['responsive'],
+    fonts: [],
     fontWeights: ['responsive', 'hover', 'focus'],
     height: ['responsive'],
     leading: ['responsive'],
