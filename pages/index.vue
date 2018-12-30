@@ -1,49 +1,53 @@
 <template>
   <section class="container">
-    <ul v-for="(category, i) in Object.keys(items)" :key="category + i" class="list-reset">
-      <li>
-        <ul v-for="post in items[category]" :key="i + post.title[1]">
-          <li>
-            <nuxt-link :to="post._path">
-              {{ post.title }}
-            </nuxt-link>
-          </li>
-        </ul>
+    <transition-group name="category" tag="ul" class="grid list-reset">
+      <li v-for="(post, i) in items" :key="i + post.title[1]">
+        <!-- <nuxt-link :to="post._path">
+          {{ post.title }}
+        </nuxt-link> -->
+        <div
+          :style="`background-image: url(${post.image})`"
+          class="thumbnail"
+          v-show="selected[post.collectionName]"
+        ></div>
       </li>
-    </ul>
+    </transition-group>
   </section>
 </template>
 
 <script>
 
 export default {
+  name: 'Home',
   components: {
   },
   data() {
     // Using webpacks context to gather all files from a folder
     // https://webpack.js.org/guides/dependency-management/#require-context
     const context = require.context('~/content/', true, /\.json$/);
-    const collectionItems = context.keys()
-      // .map(k => console.log(k) || k)
-      .map(key => ({
-        ...context(key),
-        _path: `/${
+    const items = context.keys()
+      .map(k => console.log(k) || k)
+      .map(key => {
+        const path = `${
           key
             .replace('.json', '')
-            .replace('./', '')
+            .replace(/\./, '')
         }`
-      }));
+        const collectionName = this.getCollectionName(path)
+        return {
+          ...context(key),
+          _path: path,
+          collectionName
+        }
+      });
 
     return {
-      collections: this.discardDupes(collectionItems.map(item => this.getCollectionName(item._path))),
-      items: collectionItems
+      items,
+      selected: items
         .map(item => this.getCollectionName(item._path))
         .reduce((acc, collectionName) => ({
             ...acc,
-            [collectionName]: collectionItems.filter(item => {
-              const match = ('' + item._path).match(new RegExp(`^\/${collectionName}\/`))
-              return this.getCollectionName(match)
-            })
+            [collectionName]: true
         }), {})
     }
   },
@@ -51,13 +55,25 @@ export default {
     getCollectionName(path) {
       const match = ('' + path).match(/^\/.+\//)
       if (match) {
-        return match[0].replace(/\//g, '')
+        return match[0]
+          .replace(/\//g, '')
       }
       return path
-    },
-    discardDupes(array) {
-      return array.reduce(function(acc, curr){ if(acc.indexOf(curr) < 0) acc.push(curr); return acc; }, []);
     }
   }
 };
 </script>
+
+<style scoped>
+.grid {
+  grid-template-columns: repeat(3, 16rem);
+  grid-template-columns: repeat(3, minmax(16rem, 1fr));
+  grid-gap: 1em;
+}
+.thumbnail {
+  min-height: 16rem;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+</style>

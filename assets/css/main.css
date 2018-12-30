@@ -5,3 +5,4 @@
 @import '_custom-preflight';
 @import '_resets/_nuxt';
 @import '_texts';
+@import '_layout';

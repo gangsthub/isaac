@@ -79,7 +79,10 @@ module.exports = {
   */
   router: {
     base: '',
-    linkActiveClass: 'is-active'
+    linkActiveClass: 'is-active',
+    middleware: [
+        'isMobile'
+    ],
   },
   /*
   ** Customize the progress bar color

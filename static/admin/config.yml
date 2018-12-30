@@ -4,7 +4,7 @@ backend:
   accept_roles: #optional - accepts all users if left out
     - admin
 
-media_folder: "static/uploads"
+media_folder: "static/images/uploads"
 public_folder: '/images/uploads' # The src attribute for uploaded media will begin with /images/uploads
 
 collections: # A list of collections the CMS should be able to edit

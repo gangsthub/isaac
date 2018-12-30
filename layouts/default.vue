@@ -1,7 +1,7 @@
 <template>
-  <div>
-    <header>
-      <my-header></my-header>
+  <div class="sm:flex min-h-screen">
+    <header class="sidebar">
+      <the-header></the-header>
     </header>
     <main class="container">
       <nuxt/>
@@ -10,11 +10,11 @@
 </template>
 
 <script>
-import MyHeader from '~/components/my-header/my-header';
+import TheHeader from '~/components/core/the-header/the-header';
 
 export default {
   components: {
-    MyHeader
+    TheHeader
   }
 }
 </script>

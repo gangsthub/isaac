@@ -1,8 +1,8 @@
 <template>
   <article>
     <h1>{{ post.title }}</h1>
-    <the-time :date="post.date"></the-time>
-    <img class="img-post" :src="post.thumbnail">
+    <the-time :date="safeDate"></the-time>
+    <img class="img-post" :src="post.image">
     <div v-html="parsedBody" class="container py-20" ></div>
   </article>
 </template>
@@ -30,7 +30,7 @@ export default {
         title: '',
         description: '',
         date: '',
-        thumbnail: '',
+        image: '',
         body: '',
       }
     }
@@ -46,6 +46,11 @@ export default {
     trimmedDescription() {
       return (this.post.description + '').slice(0, 300)
     },
+    safeDate() {
+      return (this.post.date)
+        .replace(/am$/, '')
+        .replace(/pm$/, '')
+    }
   },
   components: {
     TheTime

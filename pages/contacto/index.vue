@@ -1,13 +1,9 @@
 <template>
-<div>
-    asd
-</div>
+  <span>contacto</span>
 </template>
-
 
 <script>
 export default {
-    components: {
-    }
+  name: 'Contacto'
 }
 </script>
