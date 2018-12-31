@@ -2,93 +2,35 @@
   <div
     class="sm:flex min-h-screen"
   >
-    <header class="sidebar"
-      ref="sideBar"
+    <header
+      class="sidebar p-4"
+      :class="{
+        drawerOpen
+      }"
     >
       <hamburger-menu
-        ref="hm"
         class="m-4 hm"
       ></hamburger-menu>
       <the-header
-        ref="menu"
-        class="main-menu"
+        class="main-menu overflow-hidden max-w-full"
       ></the-header>
     </header>
-    <main class="container">
+    <main
+      class="container overflow-hidden"
+    >
       <nuxt/>
     </main>
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
-import { tween, styler, easing, parallel } from 'popmotion';
-
+import { mapGetters } from 'vuex';
 import TheHeader from '~/components/core/the-header/the-header';
 import HamburgerMenu from '~/components/core/hamburger-menu/hamburger-menu';
 
-const ease = .2
-const hiddenScale = .325
-const shownScale = 1
-
 export default {
-  data() {
-    return {
-    }
-  },
   computed: {
-    ...mapGetters(['drawerOpen']),
-  },
-  watch: {
-    drawerOpen(willBeOpen) {
-      this.updateMenu(willBeOpen)
-      this.updateMenuContent(willBeOpen)
-    }
-  },
-  methods: {
-    myTweeen(from, to) {
-      return tween({
-        from,
-        to,
-        ease: easing.easeOut,
-        duration: 300
-      })
-    },
-    transition(willOpen, smallState, bigState) {
-      return willOpen ?
-        this.myTweeen(smallState, bigState) :
-        this.myTweeen(bigState, smallState)
-    },
-    sideBarAction(willOpen) {
-      const small = { scaleX: hiddenScale }
-      const big = { scaleX: shownScale }
-      return this.transition(willOpen, small, big)
-    },
-    hmAction(willOpen) {
-      const small = { scaleX: 1 / hiddenScale }
-      const big = { scaleX: shownScale }
-      return this.transition(willOpen, small, big)
-    },
-    menuAction(willOpen) {
-      const small = { scaleX: 1 / hiddenScale, opacity: 0 }
-      const big = { scaleX: shownScale, opacity: 1 }
-      return this.transition(willOpen, small, big)
-    },
-    updateMenu(willBeOpen) {
-      const containerStyler = styler(this.$refs.sideBar)
-      this.sideBarAction(willBeOpen).start(v => containerStyler.set(v))
-    },
-    updateMenuContent(willBeOpen) {
-      const hmStyler = styler(this.$refs.hm.$el)
-      const menuStyler = styler(this.$refs.menu.$el)
-      parallel(
-        this.hmAction(willBeOpen),
-        this.menuAction(willBeOpen),
-      ).start(([contentOutput, menuOutput]) => {
-        hmStyler.set(contentOutput)
-        menuStyler.set(menuOutput)
-      })
-    }
+    ...mapGetters(['drawerOpen'])
   },
   components: {
     TheHeader,
@@ -97,18 +39,26 @@ export default {
 }
 </script>
 
-<style scoped>
-.sidebar {
-  @apply p-4;
-  overflow: hidden;
-}
-
+<style>
 .main-menu,
 .hm,
 .sidebar {
-  transform-origin: 0 center;
-  will-change: transform;
+  transition: transform .4s ease-out;
 }
-
-
+.sidebar {
+  background-color: aquamarine;
+  width: 100%;
+}
+@screen sm {
+  .sidebar {
+    width: 300px;
+  }
+  .sidebar:not(.drawerOpen) {
+    transform: translateX(-200px)
+  }
+  .sidebar:not(.drawerOpen) .hm,
+  .sidebar:not(.drawerOpen) .main-menu {
+    transform: translateX(200px)
+  }
+}
 </style>
