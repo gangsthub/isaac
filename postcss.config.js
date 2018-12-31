@@ -9,6 +9,7 @@ module.exports = {
     }),
     require('postcss-url'),
     require('tailwindcss')(tailwindJS),
+    require("postcss-calc"),
     require('autoprefixer')({
       cascade: false,
       grid: true

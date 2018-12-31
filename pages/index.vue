@@ -8,6 +8,7 @@
         <div
           :style="`background-image: url(${post.image})`"
           class="thumbnail"
+          :title="post.title"
           v-show="selected[post.collectionName]"
         ></div>
       </li>

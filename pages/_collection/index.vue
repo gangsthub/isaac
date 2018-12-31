@@ -25,7 +25,7 @@ export default {
     slugString,
   },
   components: {
-    TheTitle
+    TheTitle,
   }
 }
 </script>

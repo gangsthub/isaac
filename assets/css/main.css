@@ -6,3 +6,4 @@
 @import '_resets/_nuxt';
 @import '_texts';
 @import '_layout';
+@import '_a11y';
