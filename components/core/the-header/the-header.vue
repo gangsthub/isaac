@@ -53,7 +53,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['drawerOpen', 'isMobile']),
+    ...mapGetters([ 'drawerOpen' ]),
   },
   methods: {
     slugString,
